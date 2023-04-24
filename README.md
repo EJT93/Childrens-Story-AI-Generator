@@ -36,7 +36,3 @@ This repository contains a simple static website for generating children's stori
 3. Click the "Generate Story" button to create a new story.
 
 4. The generated story will appear in the story section, and you can click the "Download Story" button to save the story as a text file.
-
-## License
-
-This project is open-source and available under the [MIT License](LICENSE).
