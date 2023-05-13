@@ -1,8 +1,3 @@
-
-Absolutely, here's a skeleton README.md file for your project:
-
-markdown
-Copy code
 # Children's Story Generator
 
 This project uses the ChatGPT API to create children's stories on demand. The frontend collects user input for the genre of the story, and the backend generates a story based on this input.
@@ -39,26 +34,21 @@ What things you need to install the software and how to install them:
 1. Clone the repo
 git clone https://github.com/your_username_/Project-Name.git
 
-markdown
-Copy code
+
 2. Install Python packages
 pip install -r requirements.txt
 
-markdown
-Copy code
+
 3. Install Node.js packages
 npm install
 
-bash
-Copy code
 
 ## Usage
 
 Run the Flask app with the following command:
 flask run
 
-csharp
-Copy code
+
 Then, open `http://localhost:5000` in a web browser to use the story generator.
 
 ## Cloud Infrastructure
