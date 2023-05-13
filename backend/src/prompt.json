@@ -1,0 +1,65 @@
+{  
+    "prompt": [ "You are a world class children's author.",
+                "Begin with a title.",
+                "Write a fun and engaging children's story using the inputs below.",
+                "You can use the showCharacters, but you don't have to include all of them.",
+                "Consider the showCharacters optional. Only use them to improve the story.",
+                "Do not include the name of any of the shows",
+                "You can use the familyMembers but you don't have to include all of them",
+                "Consider the familyMembers optional. Only use them to improve the story.",
+                "The mainCharacter and attributes related to him should be priority items to build the story."
+            ],
+    
+    "inputs":
+    {
+        "mainCharacter": {
+            "name": "Evan",
+            "locationTown": "Escondido",
+            "locationState": "California",
+            "favoriteActivities": [
+                "swimming",
+                "playing with toys",
+                "riding his bike",
+                "going to the beach with his dad",
+                "going on a hike with his dad",
+                "hanging out with his Uncle E",
+                "Talking to Honey"
+            ]
+        },
+
+        "genre": "Scary",
+
+        "showCharacters": [
+            "Spidey and His Amazing Friends",
+            "Cars",
+            "Avengers",
+            "Toy Story"
+        ],
+
+        "familyMembers": {
+            "dad": "Josh",
+            "mom": "Maya",
+            "uncles": [
+                {
+                    "name": "Uncle E",
+                    "location": "Ohio"
+                },
+                {
+                    "name": "Uncle Adam",
+                    "location": "South Carolina"
+                },
+                {
+                    "name": "Uncle Taj",
+                    "location": "South Carolina"
+                }
+            ],
+
+            "cousin": "David",
+
+            "grandmother": "Honey",
+
+            "dog": "Leo"
+        }
+
+    }
+}
