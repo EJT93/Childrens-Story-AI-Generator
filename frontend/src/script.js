@@ -19,6 +19,7 @@ function generateStory() {
         document.getElementById("downloadButton").style.display = 'block';
     })
     .catch((error) => {
+        
         console.error('Error:', error);
     });
 }

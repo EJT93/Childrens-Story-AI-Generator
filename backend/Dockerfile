@@ -8,7 +8,7 @@ WORKDIR /app
 COPY src/ ./
 
 # Install the Python dependencies
-RUN pip install flask openai
+RUN pip install flask openai flask_cors
 
 # Set the command to start your application
 CMD ["python", "main.py"]
