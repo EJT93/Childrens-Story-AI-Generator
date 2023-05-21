@@ -9,7 +9,7 @@ function generateStory() {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            genre: selectedGenre, 
+            genre: genre, 
         }),
     })
     .then(response => response.json())
