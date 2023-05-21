@@ -3,7 +3,7 @@ var storyText = '';
 function generateStory() {
     var genre = document.getElementById("genre").value;
 
-    fetch('http://localhost:5001/generate', {
+    fetch('http://localhost:5000/generate', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

@@ -5,7 +5,7 @@ import os
 import json
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}}) 
 app.config['DEBUG'] = True  # This will enable debug mode and provide more detailed error messages
 
 # Load data from the prompt.json file at startup
@@ -19,6 +19,7 @@ if openai.api_key is None:
 
 @app.route('/generate', methods=['POST'])
 def generate_story():
+    print(request.json)  # This will print the incoming JSON data to the console
     genre = request.json.get('genre')  # Use get method to provide a default value of None if 'genre' is not in the request
 
     if not genre:
