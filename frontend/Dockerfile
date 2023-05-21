@@ -5,4 +5,6 @@ FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
 
 # Copy your application files to the Docker image
-COPY src/ ./
+COPY src/ /usr/share/nginx/html/src/
+# Copy your nginx configuration file to the etc/ directory
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
