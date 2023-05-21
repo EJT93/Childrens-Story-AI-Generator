@@ -8,7 +8,9 @@ function generateStory() {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({genre: genre}),
+        body: JSON.stringify({
+            genre: selectedGenre, 
+        }),
     })
     .then(response => response.json())
     .then(data => {

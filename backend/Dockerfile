@@ -10,9 +10,5 @@ COPY src/ ./
 # Install the Python dependencies
 RUN pip install flask openai
 
-# Set an environment variable for the OpenAI key
-# You will pass the actual key while running the Docker container
-ENV OPENAI_KEY=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
-
 # Set the command to start your application
 CMD ["python", "main.py"]
