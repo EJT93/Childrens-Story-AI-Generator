@@ -23,33 +23,26 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them:
-- Python
-- Flask
-- OpenAI
-- Node.js
+To run this application, you'll need:
+- Docker and Docker Compose installed on your system.
 
-### Installation
+### Local Installation
 
 1. Clone the repo
-git clone https://github.com/your_username_/Project-Name.git
+```
+git clone https://github.com/EJT93/Childrens-Story-AI-Generator.git
+```
 
+2. Navigate to the cloned directory. Create an `.env` file in the main directory, following the template in `.env.example` and add your OpenAI API key to it.
 
-2. Install Python packages
-pip install -r requirements.txt
-
-
-3. Install Node.js packages
-npm install
-
+3. Start the application using Docker Compose:
+```
+docker-compose up -d --build
+```
 
 ## Usage
 
-Run the Flask app with the following command:
-flask run
-
-
-Then, open `http://localhost:5000` in a web browser to use the story generator.
+Once the Docker containers are running, open `http://localhost:3000` in a web browser to use the story generator.
 
 ## Cloud Infrastructure
 
@@ -61,7 +54,7 @@ _This section is under development._
 
 ## Containerization and Orchestration
 
-_This section is under development._
+This application uses Docker and Docker Compose for containerization and orchestration. Docker creates isolated environments to run your applications, while Docker Compose allows you to manage multi-container applications.
 
 ## Monitoring and Logging
 
@@ -71,15 +64,11 @@ _This section is under development._
 
 If you would like to contribute to this project, please feel free to fork the repo and submit a pull request.
 
-## License
-
-_This section is under development._
-
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_twitter) - email@example.com
+Elijah Torrence - [@LinkedIn](https://www.linkedin.com/in/elijah-torrence-67208169/)
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/EJT93/Childrens-Story-AI-Generator.git](https://github.com/EJT93/Childrens-Story-AI-Generator.git)
 
 ## Acknowledgments
 
