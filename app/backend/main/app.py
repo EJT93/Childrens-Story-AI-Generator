@@ -7,7 +7,7 @@ import json
 # Path to the static files
 FRONTEND_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../frontend/build')
 
-app = Flask(__name__, static_folder=FRONTEND_FOLDER)
+app = Flask(__name__, static_folder='frontend/build')
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 app.config['DEBUG'] = True  # This will enable debug mode and provide more detailed error messages
 

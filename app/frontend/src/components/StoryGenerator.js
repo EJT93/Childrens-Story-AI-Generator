@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 const StoryGenerator = () => {
     const [storyText, setStoryText] = useState('');
-    const [genre, setGenre] = useState('');
+    const [genre, setGenre] = useState('adventure');
 
     const generateStory = () => {
-        fetch('http://localhost:5000/generate', {
+        fetch('http://backend:5001/generate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -39,7 +39,11 @@ const StoryGenerator = () => {
 
     return (
         <div>
-            <input type="text" value={genre} onChange={handleGenreChange} />
+            <select value={genre} onChange={handleGenreChange}>
+                <option value="adventure">Adventure</option>
+                <option value="fantasy">Fantasy</option>
+                <option value="science fiction">Science Fiction</option>
+            </select>
             <button onClick={generateStory}>Generate Story</button>
             {storyText && <button onClick={downloadStory}>Download Story</button>}
             <p>{storyText}</p>

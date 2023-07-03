@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: ./app/backend
+      dockerfile: Dockerfile
+    ports:
+      - '5001:5000'
+    volumes:
+      - ./app/backend/main:/app
+    environment:
+      - FLASK_ENV=${FLASK_ENV}
+      - OPENAI_KEY=${OPENAI_KEY}
+
+  frontend:
+    build: 
+      context: ./app/frontend
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./app/frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
