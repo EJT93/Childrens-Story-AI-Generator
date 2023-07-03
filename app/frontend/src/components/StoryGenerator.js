@@ -5,7 +5,7 @@ const StoryGenerator = () => {
     const [genre, setGenre] = useState('adventure');
 
     const generateStory = () => {
-        fetch('http://backend:5001/generate', {
+        fetch('http://localhost:5001/generate', { //http://backend:5001/generate in prod
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

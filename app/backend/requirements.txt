@@ -1,4 +1,4 @@
 flask
-flask-cors
 openai
 flask_cors
+python-dotenv==0.15.0

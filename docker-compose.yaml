@@ -2,7 +2,8 @@ version: '3.8'
 
 services:
   backend:
-    build: 
+    container_name: story-backend
+    build:
       context: ./app/backend
       dockerfile: Dockerfile
     ports:
@@ -10,9 +11,11 @@ services:
     environment:
       - FLASK_ENV=${FLASK_ENV}
       - OPENAI_KEY=${OPENAI_KEY}
+      - PROMPT_FILE_PATH=main/prompt.json
 
   frontend:
-    build: 
+    container_name: story-frontend
+    build:
       context: ./app/frontend
       dockerfile: Dockerfile
     ports:

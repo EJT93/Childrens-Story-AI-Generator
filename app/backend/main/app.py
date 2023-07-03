@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
+from dotenv import load_dotenv
+load_dotenv()
 import openai
 import os
 import json
@@ -7,12 +9,14 @@ import json
 # Path to the static files
 FRONTEND_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../frontend/build')
 
-app = Flask(__name__, static_folder='frontend/build')
+PROMPT_FILE_PATH = os.getenv('PROMPT_FILE_PATH')
+
+app = Flask(__name__, static_folder=FRONTEND_FOLDER)
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 app.config['DEBUG'] = True  # This will enable debug mode and provide more detailed error messages
 
 # Load data from the prompt.json file at startup
-with open('prompt.json') as f:
+with open(PROMPT_FILE_PATH) as f:
     data = json.load(f)
 
 openai.api_key = os.getenv('OPENAI_KEY')
@@ -59,6 +63,7 @@ def generate_story():
 
     # Combine all prompt lines into a single string
     prompt = "\n".join(prompt_lines)
+    print(f"Prompt: {prompt}")
 
     # Call the API and return the generated story
     story = call_chatgpt_api(prompt)
@@ -66,20 +71,27 @@ def generate_story():
     if story is None:
         return jsonify(error="OpenAI response did not contain a story"), 500
 
+    print(f"Story: {story}")
     return {'story': story}
 
 
 def call_chatgpt_api(prompt):
-    response = openai.Completion.create(
-      model="text-davinci-003",
-      prompt=prompt,
-      max_tokens=500
-    )
+    try:
+        response = openai.Completion.create(
+            model="text-davinci-003",
+            prompt=prompt,
+            max_tokens=500
+        )
 
-    if not response.choices:
+        print(f"Response: {response}")
+
+        if not response.choices:
+            return None
+
+        return response.choices[0].text.strip()
+    except Exception as e:
+        print(f"Error: {e}")
         return None
-
-    return response.choices[0].text.strip()
 
 # Serve static files
 @app.route('/', defaults={'path': ''})
@@ -91,4 +103,4 @@ def serve(path):
         return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001)
+    app.run(host='0.0.0.0', port=5000)
