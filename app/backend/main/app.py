@@ -19,9 +19,9 @@ app.config['DEBUG'] = True  # This will enable debug mode and provide more detai
 with open(PROMPT_FILE_PATH) as f:
     data = json.load(f)
 
-openai.api_key = os.getenv('OPENAI_KEY')
+openai.api_key = os.getenv('OPENAI_API_KEY')
 if openai.api_key is None:
-    raise ValueError("The OPENAI_KEY environment variable is not set.")
+    raise ValueError("The OPENAI_API_KEY environment variable is not set.")
 
 @app.route('/generate', methods=['POST'])
 def generate_story():

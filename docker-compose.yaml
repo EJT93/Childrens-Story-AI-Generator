@@ -10,7 +10,7 @@ services:
       - '5001:5000'
     environment:
       - FLASK_ENV=${FLASK_ENV}
-      - OPENAI_KEY=${OPENAI_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
       - PROMPT_FILE_PATH=/app/main/prompt.json
 
   frontend:
