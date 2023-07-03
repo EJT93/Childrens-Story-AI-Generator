@@ -11,7 +11,7 @@ services:
     environment:
       - FLASK_ENV=${FLASK_ENV}
       - OPENAI_KEY=${OPENAI_KEY}
-      - PROMPT_FILE_PATH=main/prompt.json
+      - PROMPT_FILE_PATH=/app/main/prompt.json
 
   frontend:
     container_name: story-frontend

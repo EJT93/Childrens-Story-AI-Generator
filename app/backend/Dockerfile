@@ -13,5 +13,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the backend code
 COPY . .
 
+ENV PROMPT_FILE_PATH=/app/main/prompt.json
+
 # Run the app
 CMD [ "python", "main/app.py" ]

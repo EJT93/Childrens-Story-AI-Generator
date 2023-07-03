@@ -1,5 +1,5 @@
 import unittest
-from main import app
+from app import app
 import json
 
 class TestMain(unittest.TestCase):
@@ -35,5 +35,5 @@ class TestMain(unittest.TestCase):
         # You could also check for specific content in the story, like this:
         # self.assertIn("dragon", data['story'])
 
-## if __name__ == '__main__':
-##    unittest.main() 
+if __name__ == '__main__':
+    unittest.main() 
