@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+        python: 3.8
+    commands:
+        - echo Installing dependencies...
+        - pip install -r requirements.txt
+        - npm install
+  pre_build:
+    commands:
+        - echo Building Docker images...
+        - docker-compose build
+  build:
+    commands:
+        - echo Build started on `date`
+        - echo Building the Docker image...
+        - docker-compose up -d
+  post_build:
+    commands:
+        - echo Build completed on `date`
