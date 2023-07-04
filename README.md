@@ -1,6 +1,6 @@
 # Children's Story Generator
 
-This project uses the ChatGPT API to create children's stories on demand. The frontend collects user input for the genre of the story, and the backend generates a story based on this input.
+This project uses the [label](https://planetbanknote.com/)ChatGPT API to create children's stories on demand. The frontend collects user input for the genre of the story, and the backend generates a story based on this input.
 
 ## Table of Contents
 
