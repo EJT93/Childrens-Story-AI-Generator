@@ -1,5 +1,12 @@
 version: 0.2
 
+env:
+  parameter store:
+    LOGIN: LOGIN
+    HOST: SC-HOST
+    Organization: SC-Organization
+    Project: SC-Project
+    CODEARTIFACT_AUTH_TOKEN: SC-CodeArtifact-Token
 phases:
   install:
     runtime-versions:
@@ -23,3 +30,7 @@ phases:
   post_build:
     commands:
         - echo Build completed on `date`
+        - echo "Running docker services:"
+        - docker-compose ps
+        - echo "docker-compose logs:"
+        - docker-compose logs
