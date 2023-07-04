@@ -13,7 +13,9 @@ phases:
         python: 3.8
     commands:
         - echo Installing dependencies...
+        - aws codeartifact login --tool pip --repository pip-store --domain storygen --domain-owner 290481657399 --region us-east-2
         - pip install -r requirements.txt
+        - aws codeartifact login --tool npm --repository npm-store --domain storygen --domain-owner 290481657399 --region us-east-2
         - npm install
         - echo "Installing Docker Compose"
         - curl -L "https://github.com/docker/compose/releases/download/2.15.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
