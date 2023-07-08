@@ -38,7 +38,6 @@ phases:
       - echo Build started on `date`
       - echo Packaging the application...
       - cd app/frontend && npm run build && cd ../..
-      - python setup.py sdist bdist_wheel
       - echo Running Sonar Scanner...
       - sonar-scanner -Dsonar.projectKey=$SC_PROJECT -Dsonar.organization=$SC_ORGANIZATION -Dsonar.host.url=$SC_HOST -Dsonar.login=$SC_LOGIN
       - sleep 5
