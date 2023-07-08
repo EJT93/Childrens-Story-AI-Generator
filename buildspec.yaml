@@ -14,7 +14,7 @@ phases:
   # Install the runtime dependencies, log into CodeArtifact for npm.
   install:
     runtime-versions:
-      python: 3.8
+      python: 3.11
       nodejs: 18
     commands:
       - aws codeartifact login --tool npm --repository npm-store --domain storygen --domain-owner 290481657399 --region us-east-2
