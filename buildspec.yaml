@@ -15,7 +15,7 @@ phases:
   install:
     runtime-versions:
       python: 3.11
-      nodejs: 18
+      nodejs: 16
     commands:
       - cd app/frontend
       - aws codeartifact login --tool npm --repository npm-store --domain storygen --domain-owner 290481657399 --region us-east-2
