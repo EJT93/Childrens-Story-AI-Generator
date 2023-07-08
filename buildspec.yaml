@@ -3,7 +3,7 @@ version: 0.2
 # Define environment variables from AWS Parameter Store
 env:
   parameter-store:
-    SC_LOGIN: LOGIN
+    SC_LOGIN: SC-sonartoken
     SC_HOST: SC-HOST
     SC_ORGANIZATION: SC-Organization
     SC_PROJECT: SC-Project
