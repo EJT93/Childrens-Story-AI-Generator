@@ -39,7 +39,7 @@ phases:
       - echo Packaging the application...
       - cd app/frontend && npm run build && cd ../..
       - echo Running Sonar Scanner...
-      - sonar-scanner -Dsonar.projectKey=$SC_PROJECT -Dsonar.organization=$SC_ORGANIZATION -Dsonar.host.url=$SC_HOST -Dsonar.login=$SC_LOGIN
+      - sonar-scanner
       - sleep 5
       - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$SC_PROJECT >result.json
       - cat result.json
