@@ -29,8 +29,8 @@ phases:
       - apt-get install -y jq
       - echo Installing Sonar Scanner...
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip
-      - unzip sonar-scanner-cli-4.8.0.2856-linux.zip
-      - export PATH=$PATH:/sonar-scanner-4.8.0.2856-linux/bin/
+      - unzip sonar-scanner-cli-4.8.0.2856-linux.zip -d /usr/local
+      - export PATH=$PATH:/usr/local/sonar-scanner-4.8.0.2856-linux/bin/
 
   build:
     commands:
