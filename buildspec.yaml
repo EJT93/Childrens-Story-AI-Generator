@@ -1,38 +1,51 @@
 version: 0.2
 
+# Define environment variables from AWS Parameter Store
 env:
-  parameter store:
-    LOGIN: LOGIN
-    HOST: SC-HOST
-    Organization: SC-Organization
-    Project: SC-Project
+  parameter-store:
+    SC_LOGIN: LOGIN
+    SC_HOST: SC-HOST
+    SC_ORGANIZATION: SC-Organization
+    SC_PROJECT: SC-Project
     CODEARTIFACT_AUTH_TOKEN: SC-CodeArtifact-Token
+    OPENAI_API_KEY: ElijahChatGPTkey
+
 phases:
+  # Install the runtime dependencies, log into CodeArtifact for npm.
   install:
     runtime-versions:
-        python: 3.8
+      python: 3.8
+      nodejs: 14
     commands:
-        - echo Installing dependencies...
-        - aws codeartifact login --tool pip --repository pip-store --domain storygen --domain-owner 290481657399 --region us-east-2
-        - pip install -r requirements.txt
-        - aws codeartifact login --tool npm --repository npm-store --domain storygen --domain-owner 290481657399 --region us-east-2
-        - npm install
-        - echo "Installing Docker Compose"
-        - curl -L "https://github.com/docker/compose/releases/download/2.15.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-        - chmod +x /usr/local/bin/docker-compose
+      - aws codeartifact login --tool npm --repository npm-store --domain storygen --domain-owner 290481657399 --region us-east-2
+
   pre_build:
     commands:
-        - echo Building Docker images...
-        - docker-compose build
+    # Update package list, install Node.js dependencies, download and extract Sonar Scanner, add Sonar Scanner to PATH.
+      - echo Installing dependencies...
+      - apt-get update
+      - npm install
+      - apt-get install -y jq
+      - echo Installing Sonar Scanner...
+      - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip
+      - unzip sonar-scanner-cli-4.8.0.2856-linux.zip
+      - export PATH=$PATH:8/sonar-scanner-4.8.0.2856-linux/bin/
+
   build:
     commands:
-        - echo Build started on `date`
-        - echo Building the Docker image...
-        - docker-compose up -d
-  post_build:
-    commands:
-        - echo Build completed on `date`
-        - echo "Running docker services:"
-        - docker-compose ps
-        - echo "docker-compose logs:"
-        - docker-compose logs
+    # Build the application, create Python source distribution and wheel, run the Sonar Scanner to analyze the code and send the report to SonarCloud, request the quality gate status for the project from SonarCloud and store the result in a file, print the contents of the result file to the console, check the status in the result. If the status is 'ERROR', terminate the build with a failure status.
+      - echo Build started on `date`
+      - echo Packaging the application...
+      - npm run build
+      - python setup.py sdist bdist_wheel
+      - echo Running Sonar Scanner...
+      - sonar-scanner -Dsonar.projectKey=$SC_PROJECT -Dsonar.organization=$SC_ORGANIZATION -Dsonar.host.url=$SC_HOST -Dsonar.login=$SC_LOGIN
+      - sleep 5
+      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$SC_PROJECT >result.json
+      - cat result.json
+      - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then exit 1 ;fi
+      
+artifacts:
+  files:
+    - '**/*'
+  base-directory: 'dist'
