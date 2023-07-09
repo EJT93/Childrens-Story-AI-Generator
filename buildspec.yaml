@@ -48,8 +48,7 @@ phases:
 
 cache:
   paths:
-    - "node_modules/**/*"      
-#artifacts:
- # files:
-  #  - '**/*'
-  #base-directory: 'app/frontend/build'
+    - "app/frontend/node_modules/**/*"      
+artifacts:
+  files:
+    - 'app/**/*'
