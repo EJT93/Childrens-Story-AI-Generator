@@ -25,9 +25,7 @@ phases:
     # Update package list, install Node.js dependencies, download and extract Sonar Scanner, add Sonar Scanner to PATH.
       - echo Installing dependencies...
       - apt-get update
-      - cd app/frontend
-      - npm install
-      - cd ../..
+      - cd app/frontend && npm install && cd ../..
       - apt-get install -y jq
       - echo Installing Sonar Scanner...
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip
@@ -39,7 +37,9 @@ phases:
     # Build the application, create Python source distribution and wheel, run the Sonar Scanner to analyze the code and send the report to SonarCloud, request the quality gate status for the project from SonarCloud and store the result in a file, print the contents of the result file to the console, check the status in the result. If the status is 'ERROR', terminate the build with a failure status.
       - echo Build started on `date`
       - echo Packaging the application...
-      - cd app/frontend && npm run build && cd ../..
+      - cd app/frontend
+      - npm run build
+      - cd ../..
       - echo Running Sonar Scanner...
       - sonar-scanner -Dsonar.projectKey=$SC_PROJECT -Dsonar.organization=$SC_ORGANIZATION -Dsonar.host.url=$SC_HOST -Dsonar.login=$SC_LOGIN
 
