@@ -25,7 +25,9 @@ phases:
     # Update package list, install Node.js dependencies, download and extract Sonar Scanner, add Sonar Scanner to PATH.
       - echo Installing dependencies...
       - apt-get update
-      - cd app/frontend && npm install && cd ../..
+      - cd app/frontend
+      - npm install
+      - cd ../..
       - apt-get install -y jq
       - echo Installing Sonar Scanner...
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip
