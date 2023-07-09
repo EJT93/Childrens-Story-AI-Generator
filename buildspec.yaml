@@ -39,18 +39,17 @@ phases:
       - echo Packaging the application...
       - cd app/frontend && npm run build && cd ../..
       - echo Running Sonar Scanner...
-      - sonar-scanner \
-        -Dsonar.projectKey=$SC_PROJECT \
-        -Dsonar.organization=$SC_ORGANIZATION \
-        -Dsonar.host.url=$SC_HOST \
-        -Dsonar.login=$SC_LOGIN
+      - sonar-scanner -Dsonar.projectKey=$SC_PROJECT -Dsonar.organization=$SC_ORGANIZATION -Dsonar.host.url=$SC_HOST -Dsonar.login=$SC_LOGIN
 
       - sleep 5
       - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$SC_PROJECT >result.json
       - cat result.json
       - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then exit 1 ;fi
-      
-artifacts:
-  files:
-    - '**/*'
-  base-directory: 'app/frontend/build'
+
+cache:
+  paths:
+    - "node_modules/**/*"      
+#artifacts:
+ # files:
+  #  - '**/*'
+  #base-directory: 'app/frontend/build'
