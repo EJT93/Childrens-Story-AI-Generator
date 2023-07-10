@@ -1,5 +1,5 @@
 {
-  "name": "childrens_story_frontend",
+  "name": "storygen_frontend",
   "version": "1.0.0",
   "description": "Frontend for Children's Story Generator",
   "main": "index.js",
