@@ -1,17 +1,19 @@
+Sure, based on my understanding, I'm suggesting the following updated README.
+
 # Children's Story Generator
 
-This project uses the [label](https://planetbanknote.com/)ChatGPT API to create children's stories on demand. The frontend collects user input for the genre of the story, and the backend generates a story based on this input.
+This project uses the [ChatGPT API](https://planetbanknote.com/) to create children's stories on demand. The frontend collects user input for the genre of the story, and the backend, implemented in Python, generates a story based on this input. 
 
 ## Table of Contents
 
 - [Getting Started](#getting-started)
 - [Prerequisites](#prerequisites)
-- [Installation](#installation)
+- [Local Installation](#local-installation)
 - [Usage](#usage)
 - [Cloud Infrastructure](#cloud-infrastructure)
 - [CI/CD Pipeline](#ci/cd-pipeline)
-- [Containerization and Orchestration](#containerization-and-orchestration)
-- [Monitoring and Logging](#monitoring-and-logging)
+- [Containerization](#containerization)
+- [Code Quality](#code-quality)
 - [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
@@ -46,19 +48,19 @@ Once the Docker containers are running, open `http://localhost:3000` in a web br
 
 ## Cloud Infrastructure
 
-_This section is under development._
+The application is designed to be deployed on Amazon Web Services (AWS), leveraging services like AWS CodeBuild and CodePipeline for continuous integration/continuous delivery.
 
 ## CI/CD Pipeline
 
-_This section is under development._
+The application employs a CI/CD pipeline using AWS CodeBuild and CodePipeline. Any changes pushed to the GitHub repository are automatically built and deployed, ensuring a seamless development process and continuous delivery of features.
 
-## Containerization and Orchestration
+## Containerization
 
-This application uses Docker and Docker Compose for containerization and orchestration. Docker creates isolated environments to run your applications, while Docker Compose allows you to manage multi-container applications.
+This application uses Docker for containerization. Docker creates isolated environments called containers to run your applications. Each container will include all necessary executables, binary code, libraries, and configuration files.
 
-## Monitoring and Logging
+## Code Quality
 
-_This section is under development._
+The application uses SonarQube for continuous inspection of code quality. SonarQube detects bugs, code smells, and security vulnerabilities, thereby helping to maintain high code standards and reliability.
 
 ## Contributing
 
