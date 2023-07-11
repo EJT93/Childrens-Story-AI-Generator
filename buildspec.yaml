@@ -25,7 +25,7 @@ phases:
     # Update package list, install Node.js dependencies, download and extract Sonar Scanner, add Sonar Scanner to PATH.
       - echo Installing dependencies...
       - apt-get update
-      - cd app/frontend && npm cache clean --force && npm install && chmod -R 755 node_modules && cd ../..
+      - cd app/frontend && npm cache clean --force && npm install --production && chmod -R 755 node_modules && cd ../..
       - apt-get install -y jq
       - echo Installing Sonar Scanner...
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip
@@ -54,3 +54,5 @@ cache:
 artifacts:
   files:
     - 'app/**/*'
+  # discard-paths: yes
+  name: storygen-artifact-$(date +%Y-%m-%d) 
