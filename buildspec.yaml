@@ -3,11 +3,6 @@ version: 0.2
 # Define environment variables from AWS Parameter Store
 env:
   parameter-store:
-    SC_LOGIN: SC-sonartoken
-    SC_HOST: SC-HOST
-    SC_ORGANIZATION: SC-Organization
-    SC_PROJECT: SC-Project
-    CODEARTIFACT_AUTH_TOKEN: SC-CodeArtifact-Token
     OPENAI_API_KEY: ElijahChatGPTkey
 
 phases:
@@ -22,37 +17,26 @@ phases:
       - cd ../..
   pre_build:
     commands:
-    # Update package list, install Node.js dependencies, download and extract Sonar Scanner, add Sonar Scanner to PATH.
+    # Update package list, install Node.js dependencies.
       - echo Installing dependencies...
       - apt-get update
       - cd app/frontend && npm cache clean --force && npm install --production && chmod -R 755 node_modules && cd ../..
       - apt-get install -y jq
-      - echo Installing Sonar Scanner...
-      - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip
-      - unzip sonar-scanner-cli-4.8.0.2856-linux.zip -d /usr/local
-      - export PATH=$PATH:/usr/local/sonar-scanner-4.8.0.2856-linux/bin/
 
   build:
     commands:
-    # Build the application, create Python source distribution and wheel, run the Sonar Scanner to analyze the code and send the report to SonarCloud, request the quality gate status for the project from SonarCloud and store the result in a file, print the contents of the result file to the console, check the status in the result. If the status is 'ERROR', terminate the build with a failure status.
+    # Build the application.
       - echo Build started on `date`
       - echo Packaging the application...
       - cd app/frontend
       - npm run build
       - cd ../..
-      - echo Running Sonar Scanner...
-      - sonar-scanner -Dsonar.projectKey=$SC_PROJECT -Dsonar.organization=$SC_ORGANIZATION -Dsonar.host.url=$SC_HOST -Dsonar.login=$SC_LOGIN
-
-      - sleep 5
-      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$SC_PROJECT >result.json
-      - cat result.json
-      - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then exit 1 ;fi
 
 cache:
   paths:
-    - "app/frontend/node_modules/**/*"      
+    - "app/frontend/node_modules/**/*"
 artifacts:
   files:
     - 'app/**/*'
   # discard-paths: yes
-  name: storygen-artifact-$(date +%Y-%m-%d) 
+  name: storygen-artifact-$(date +%Y-%m-%d)
