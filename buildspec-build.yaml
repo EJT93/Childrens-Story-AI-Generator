@@ -20,7 +20,7 @@ phases:
     # Update package list, install Node.js dependencies.
       - echo Installing dependencies...
       - apt-get update
-      - cd app/frontend && npm cache clean --force && npm install --production && chmod -R 755 node_modules && cd ../..
+      - cd app/frontend && npm cache clean && npm install --omit=dev && chmod -R 755 node_modules && cd ../..
       - apt-get install -y jq
 
   build:

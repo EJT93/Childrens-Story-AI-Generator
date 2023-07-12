@@ -1,5 +1,3 @@
-Sure, based on my understanding, I'm suggesting the following updated README.
-
 # Children's Story Generator
 
 This project uses the [ChatGPT API](https://planetbanknote.com/) to create children's stories on demand. The frontend collects user input for the genre of the story, and the backend, implemented in Python, generates a story based on this input. 
